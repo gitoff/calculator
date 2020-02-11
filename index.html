@@ -80,20 +80,20 @@
 
             if (op && n1 && n2) {
                 calculate()
-                n1 = parseInt(display.textContent)
+                n1 = parseFloat(display.textContent)
                 n2 = ''
                 op = e.target.name
             } else if (op && n1 && !cls) {
-                n2 = parseInt(display.textContent)
+                n2 = parseFloat(display.textContent)
                 calculate()
-                n1 = parseInt(display.textContent)
+                n1 = parseFloat(display.textContent)
                 n2 = ''
                 op = e.target.name
                 cls = true
             } else if (op && n1) {
-                n2 = parseInt(display.textContent)
+                n2 = parseFloat(display.textContent)
             } else {
-                n1 = parseInt(display.textContent)
+                n1 = parseFloat(display.textContent)
                 op = e.target.name
                 cls = true
             }
@@ -103,7 +103,7 @@
 
         if (e.target.className === 'equals') {
             if (!op && !e2) {
-                n1 = parseInt(display.textContent)
+                n1 = parseFloat(display.textContent)
                 return
             }
 
@@ -112,10 +112,10 @@
                 op = e2
                 calculate()
             } else {
-                n2 = parseInt(display.textContent)
+                n2 = parseFloat(display.textContent)
                 calculate()
             }
-            n1 = parseInt(display.textContent)
+            n1 = parseFloat(display.textContent)
             e1 = n2
             n2 = ''
             e2 = op
