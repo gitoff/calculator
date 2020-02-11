@@ -52,6 +52,18 @@
 
     function updateDisplay(e) {
         // console.log(e)
+
+        if (e.target.className === 'clear') {
+            display.textContent = "0"
+            n1 = 0
+            n2 = 0
+            e1 = 0
+            op = ''
+            e2 = ''
+            cls = false
+            prevBtn = ''
+            return
+        }
     
         if (e.target.className === 'operator') {
             if (prevBtn === 'operator') {
