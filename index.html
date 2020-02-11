@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">0</div>
+        <button class="clear">C</button>
+        <div class="row">
+            <button class="digit" name="7">7</button>
+            <button class="digit" name="8">8</button>
+            <button class="digit" name="9">9</button>
+            <button class="operator" name="/">÷</button>
+        </div>
+        <div class="row">
+            <button class="digit" name="4">4</button>
+            <button class="digit" name="5">5</button>
+            <button class="digit" name="6">6</button>
+            <button class="operator" name="*">×</button>
+        </div>
+        <div class="row">
+            <button class="digit" name="1">1</button>
+            <button class="digit" name="2">2</button>
+            <button class="digit" name="3">3</button>
+            <button class="operator" name="-">–</button>
+        </div>
+        <div class="row">
+            <button class="digit" name="0">0</button>
+            <button class="decimal" name=".">.</button>
+            <button class="equals" name="=">=</button>
+            <button class="operator" name="+">+</button>
+        </div>
+        
+    </div>
+
+<script>
+    const display = document.querySelector('.display')
+    const buttons = Array.from(document.querySelectorAll('button'))
+    buttons.forEach(button => button.addEventListener("click", updateDisplay))
+
+    let n1 = 0
+    let n2 = 0
+    let e1 = 0
+    let op = ''
+    let e2 = ''
+    let cls = false
+    let prevBtn = ''
+
+    function updateDisplay(e) {
+        // console.log(e)
+    
+        if (e.target.className === 'operator') {
+            if (prevBtn === 'operator') {
+                op = e.target.name
+                return
+            }
+
+            if (op && n1 && n2) {
+                calculate()
+                n1 = parseInt(display.textContent)
+                n2 = ''
+                op = e.target.name
+            } else if (op && n1 && !cls) {
+                n2 = parseInt(display.textContent)
+                calculate()
+                n1 = parseInt(display.textContent)
+                n2 = ''
+                op = e.target.name
+                cls = true
+            } else if (op && n1) {
+                n2 = parseInt(display.textContent)
+            } else {
+                n1 = parseInt(display.textContent)
+                op = e.target.name
+                cls = true
+            }
+            prevBtn = 'operator'
+            return
+        }
+
+        if (e.target.className === 'equals') {
+            if (!op && !e2) {
+                n1 = parseInt(display.textContent)
+                return
+            }
+
+            if (prevBtn === 'equals') {
+                n2 = e1
+                op = e2
+                calculate()
+            } else {
+                n2 = parseInt(display.textContent)
+                calculate()
+            }
+            n1 = parseInt(display.textContent)
+            e1 = n2
+            n2 = ''
+            e2 = op
+            op = ''
+            prevBtn = 'equals'
+            return
+        }
+
+        if (e.target.className === 'digit') {
+            prevBtn = 'digit'
+        }
+
+        if (cls) {
+            display.textContent = e.target.textContent
+            cls = false
+        } else if (display.textContent == '0') {
+            display.textContent = e.target.textContent
+        } else {
+            display.textContent += e.target.textContent
+        }
+        
+    }
+    function calculate() {
+        clear = true
+        display.textContent = operate(op, n1, n2)
+    }
+    function add(x, y) {
+        return x + y
+    }
+    function subtract(x, y) {
+        return x - y
+    }
+    function multiply(x, y) {
+        return x * y
+    }
+    function divide(x, y) {
+        if (y === 0) { return "Can't divide by zero"}
+        return x / y
+    }
+
+    function operate(operator, n1, n2) {
+        switch(operator) {
+            case '+':
+                return add(n1, n2)
+                break
+            case '-':
+                return subtract(n1, n2)
+                break
+            case '*':
+                return multiply(n1, n2)
+                break
+            case '/':
+                return divide(n1, n2)
+                break
+            default:
+                return 'Invalid operator'
+        }
+    }
+</script>
+</body>
+</html>
