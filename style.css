@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt&display=swap');
+
+.title {
+    text-align: center;
+    font-family: 'Rock Salt', cursive;
+}
+
+.calculator {
+    margin: 0 auto;
+    background-color: #333;
+    width: 600px;
+    height: 400px;
+    padding: 2px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.display {
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 60px;
+    text-align: right;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+  }
+
+button {
+    outline: 0;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    height: 60px;
+    width: 60px;
+    flex-grow: 1;
+    margin: 1px;
+    color: white;
+    background-color: black;
+    border: none;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+.operator {
+    background-color: #111;
+}
+
+.clear {
+    background-color: maroon;
+}
+
+.clear:hover {
+    background-color: rgb(110, 8, 8);
+}
+
+.equals {
+    background-color: #4781b9;
+}
+
+.equals:hover {
+    background-color: #3f73a6;
+}
