@@ -64,6 +64,13 @@
             prevBtn = ''
             return
         }
+
+        if (e.target.className === 'decimal') {
+            if (prevBtn === 'decimal') {
+                return
+            }
+            prevBtn = 'decimal'
+        }
     
         if (e.target.className === 'operator') {
             if (prevBtn === 'operator') {
