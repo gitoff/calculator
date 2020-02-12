@@ -80,7 +80,11 @@
         }
 
         if (e.target.className === 'decimal') {
-            if (prevBtn === 'decimal') {
+            if (prevBtn === 'operator') {
+                display.textContent = "0."
+                cls = false
+            }
+            if (/\.+/.test(display.textContent)) {
                 return
             }
             prevBtn = 'decimal'
